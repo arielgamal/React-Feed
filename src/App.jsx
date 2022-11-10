@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import { Header } from "./components/Header";
 
-function App() {
-  const [count, setCount] = useState(0)
+import './global.css'
 
+export function App() {
   return (
+    <div>
     <h1>Feed</h1>
+    <Header />
+    </div>
   )
 }
-
-export default App
