@@ -7,10 +7,10 @@ export function Post() {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar />
+          <Avatar src="https://github.com/PVGusmao.png"/>
           <div className={styles.authorInfo}>
-            <strong>Ariel Wild Gamal</strong>
-            <span>Web Developer</span>
+            <strong>Paulo Victor</strong>
+            <span>Frontend Developer (React Mobile)</span>
           </div>
         </div>
 
@@ -20,7 +20,7 @@ export function Post() {
       <div className={styles.content}>
         <p>Fala galera =D</p>
         <p>Acabei upar um arquivo com todos os conteúdos de React native para estudo, chega mais.</p>
-        <p><a href="">ariel.dev/arielgamal</a></p>
+        <p><a href="">paulo.dev/pvmg</a></p>
         <p><a href="">#ariel #novoprojeto #soudemais</a></p>
       </div>
 

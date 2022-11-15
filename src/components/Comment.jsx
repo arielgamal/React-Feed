@@ -5,22 +5,22 @@ import styles from "./Comment.module.css";
 export function Comment() {
   return(
     <div className={styles.comment}>
-      <Avatar />
+      <Avatar hasBorder={false} src="https://github.com/arielgamal.png"/>
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
-              <strong>Paulo Victor</strong>
-              <time title="14 novembro às 15:00" dateTime="2022-11-14">Cerva de 1h atrás</time>
+              <strong>Ariel Wild Gamal</strong>
+              <time title="14 novembro às 15:00" dateTime="2022-11-14">Cerca de 1h atrás</time>
             </div>
 
             <button title="Deletar comentario">
-            <Trash syze={20}/>
+            <Trash syze={24}/>
             </button>
           </header>
 
-          <p>Muito bom Ariel, parabens!!</p>
+          <p>Muito bom Paulo, parabens!!</p>
         </div>
 
         <footer>
