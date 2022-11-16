@@ -1,8 +1,12 @@
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
+import { format } from "date-fns";
 import styles from "./Post.module.css";
+import { ptBR } from "date-fns/locale";
 
 export function Post({author, content, publishedAt}) {
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {locale: ptBR})
+
   const {avatarUrl, name, role} = author
   return(
     <article className={styles.post}>
@@ -15,14 +19,17 @@ export function Post({author, content, publishedAt}) {
           </div>
         </div>
 
-        <time title="14 novembro às 12:50" dateTime="2022-11-14">Publicado há 1h</time>
+        <time title="14 novembro às 12:50" dateTime="2022-11-14">{publishedDateFormatted}</time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala galera =D</p>
-        <p>Acabei upar um arquivo com todos os conteúdos de React native para estudo, chega mais.</p>
-        <p><a href="">paulo.dev/pvmg</a></p>
-        <p><a href="">#ariel #novoprojeto #soudemais</a></p>
+        {content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type === "link") {
+            return <p><a href="">{line.content}</a></p>
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
