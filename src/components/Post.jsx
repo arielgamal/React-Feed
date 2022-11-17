@@ -8,7 +8,7 @@ import { useState } from "react";
 export function Post({author, content, publishedAt}) {
   const [comments, setComments] = useState(["Post muito bacana hein?"]);
   const [newCommentText, setNewCommentText] = useState("");
-
+ 
   const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {locale: ptBR})
 
   //Função para adicionar comentarios;
@@ -21,6 +21,19 @@ export function Post({author, content, publishedAt}) {
   //Função para pegar o texto dentro do input;
   function handleNewCommentChange({target}) {
     setNewCommentText(target.value);
+    event.target.setCustomValidity("")
+  }
+
+
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = comments.filter((comment) => {
+      return comment != commentToDelete;
+    }) 
+    setComments(commentsWithoutDeletedOne);
+  }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity("Esse campo é obrigatório!")
   }
 
   const {avatarUrl, name, role} = author
@@ -55,16 +68,23 @@ export function Post({author, content, publishedAt}) {
           name="comment"
           placeholder="Deixe um comentário"
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
         
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={newCommentText.length === 0}>Publicar</button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
       {comments.map((comment) => {
-        return <Comment key={comment} content={comment}/>
+        return (
+          <Comment 
+            key={comment}
+            content={comment}
+            onDeleteComment={deleteComment} />
+        )
       })}
       </div>
     </article>
